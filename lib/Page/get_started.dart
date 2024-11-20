@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nemos/Component/button.dart';
+import 'package:nemos/Component/orline.dart';
 import 'package:nemos/Component/textModel.dart';
 
 class GetStarted extends StatelessWidget {
@@ -64,53 +65,19 @@ class GetStarted extends StatelessWidget {
                         text: "Sign In", size: 15),
                   ),
                   const SizedBox(height: 3,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100.0)
-                          ),
-                          child: const Divider(
-                            indent: 10,
-                            endIndent: 10,
-                            thickness: 2.0,
-                            height: 5.0,
-                            color: Color(0x807A7A7A),
-                          ),
-                        ),
-                      ),
-                      const Text('or', style: TextStyle(color: Color(0xFF7A7A7A)),),
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100.0)
-                          ),
-                          child: const Divider(
-                            indent: 10,
-                            endIndent: 10,
-                            thickness: 2.0,
-                            height: 5.0,
-                            color: Color(0x807A7A7A),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  const OrLine(),
                   const SizedBox(height: 3,),
                   Center(
                     child: ButtonDef(
                         width: MediaQuery.sizeOf(context).width*0.9,
-                        height: MediaQuery.sizeOf(context).height*0.04,
+                        height: MediaQuery.sizeOf(context).height*0.05,
                         type: 2,
                         onTap: (){
                           if (kDebugMode) {
                             print("hello");
                           }
                         },
-                        text: "Sign Up", size: 15),
+                        text: "Sign Up", size: 16),
                   ),
                 ],
               ),
