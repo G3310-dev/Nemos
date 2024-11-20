@@ -12,7 +12,20 @@
           "package_name": "com.example.nemos"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "955837114573-9idkjid05jvm40jo9s8935kbjjgectj1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.nemos",
+            "certificate_hash": "bd6b2cce7453a8ccb6608ee9582e5a84000e91e5"
+          }
+        },
+        {
+          "client_id": "955837114573-fpo0hpepaqh61hhke5vsu6296jucb7ei.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyC1b_p2dHU38nn_wjUQFAgkmWd_9b-U_Fk"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "955837114573-fpo0hpepaqh61hhke5vsu6296jucb7ei.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

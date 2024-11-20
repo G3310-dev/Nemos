@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthWrap {
   final FirebaseAuth _firebaseAuth;
@@ -10,6 +11,22 @@ class AuthWrap {
 
   Future<void> signOut() async{
     FirebaseAuth.instance.signOut();
+  }
+
+  Future<UserCredential?> signInWithGoogle({required BuildContext context}) async{
+    try {
+      final googleUser = await GoogleSignIn().signIn();
+      final googleAuth = await googleUser?.authentication;
+      final cred = GoogleAuthProvider.credential(idToken: googleAuth?.idToken, accessToken: googleAuth?.accessToken);
+
+      return await _firebaseAuth.signInWithCredential(cred);
+    } catch (e){
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(e.toString()),
+        duration: const Duration(milliseconds: 700),
+      ));
+    }
+    return null;
   }
 
   Future<void> signIn({required String email, required String password, required BuildContext context}) async {
