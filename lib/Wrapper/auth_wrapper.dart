@@ -49,15 +49,34 @@ class AuthWrap {
     } on FirebaseAuthException catch (e) {
       // Fluttertoast.showToast(msg: e.message.toString(), toastLength: Toast.LENGTH_LONG);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(e.message.toString()),
+        content: Text(e.message.toString().trim()),
         duration: const Duration(milliseconds: 700),
       ));
     }
   }
 
-  signUp({required String email, required String password, required String confirm, required BuildContext context}) {
+  signUp({required String email, required String password, required BuildContext context, required String confirm}) {
     try {
-      FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+      if(email.isEmpty){
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Email Is Empty"),
+          duration: Duration(milliseconds: 700),
+        ));
+      }else if(password.isEmpty){
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Password Is Empty"),
+          duration: Duration(milliseconds: 700),
+        ));
+      }else{
+        if(password == confirm){
+          FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+        } else{
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text("Password Doesn't match"),
+            duration: Duration(milliseconds: 700),
+          ));
+        }
+      }
     } on FirebaseAuthException catch (e) {
       // Fluttertoast.showToast(msg: e.message.toString(), toastLength: Toast.LENGTH_LONG);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(

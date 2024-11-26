@@ -2,10 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:nemos/Page/Authentication/sign_in.dart';
 import 'package:nemos/Page/get_started.dart';
+import 'package:nemos/Page/home.dart';
 import 'package:nemos/Wrapper/auth_wrapper.dart';
 import 'package:provider/provider.dart';
+
+import 'Wrapper/route_wrapper.dart';
 
 Future <void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,13 +32,31 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Nemos',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           scaffoldBackgroundColor: const Color(0xFFFFFFFF),
         ),
-        home: const SignIn(),
+        onGenerateRoute: Routing.generateRoute,
+        // initialRoute: "/",
+        home: const AuthenticationWrapper(),
       ),
     );
+  }
+}
+
+
+class AuthenticationWrapper extends StatelessWidget {
+  const AuthenticationWrapper({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final firebaseUser = context.watch<User?>();
+
+    if (firebaseUser != null) {
+      return const Home();
+    } else {
+      return const GetStarted();
+    }
   }
 }

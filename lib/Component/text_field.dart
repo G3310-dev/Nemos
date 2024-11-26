@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:nemos/Component/textModel.dart';
 
 class FieldText extends StatefulWidget {
   final String text;
   final double height;
   final String desc;
   final bool obs;
+  final int textType;
   var control;
 
   FieldText({Key? key,
     required this.text,
     required this.height,
     required this.desc,
+    required this.textType,
     required this.obs,
     required this.control}) : super(key: key);
 
@@ -36,6 +37,7 @@ class _FieldTextState extends State<FieldText> {
                 borderRadius: BorderRadius.circular(9)
             ),
             child: TextFormField(
+              maxLines: widget.textType == 1? null : 1,
               obscureText: widget.obs,
               controller: widget.control,
               decoration: InputDecoration(

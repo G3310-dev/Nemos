@@ -1,8 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nemos/Component/button.dart';
 import 'package:nemos/Component/orline.dart';
-import 'package:nemos/Component/textModel.dart';
+import 'package:nemos/Component/text_model.dart';
 
 class GetStarted extends StatelessWidget {
   const GetStarted({super.key});
@@ -58,9 +57,7 @@ class GetStarted extends StatelessWidget {
                         height: MediaQuery.sizeOf(context).height*0.04,
                         type: 1,
                         onTap: (){
-                          if (kDebugMode) {
-                            print("hello");
-                          }
+                          Navigator.pushNamed(context, "/signIn");
                         },
                         text: "Sign In", size: 15),
                   ),
@@ -73,9 +70,7 @@ class GetStarted extends StatelessWidget {
                         height: MediaQuery.sizeOf(context).height*0.05,
                         type: 2,
                         onTap: (){
-                          if (kDebugMode) {
-                            print("hello");
-                          }
+                          Navigator.pushNamed(context, "/signUp");
                         },
                         text: "Sign Up", size: 16),
                   ),
