@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nemos/Component/action_bar.dart';
+import 'package:nemos/Component/drawer.dart';
 import 'package:nemos/Component/text_model.dart';
 
 import '../Component/forum.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  Home({super.key});
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const DrawerDef(),
+      key: _scaffoldKey,
       body: Stack(
         children: [
           Column(
@@ -73,7 +78,10 @@ class Home extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const Forum(),
+                      SizedBox(
+                          width: MediaQuery.sizeOf(context).width*0.9,
+                          child: const Forum()
+                      ),
                     ],
                   ),
                 ),

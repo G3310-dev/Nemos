@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nemos/Component/text_model.dart';
 
-class ActionBar extends StatelessWidget {
+class ActionBar extends StatefulWidget {
   const ActionBar({super.key});
 
   @override
+  State<ActionBar> createState() => _ActionBarState();
+}
+
+class _ActionBarState extends State<ActionBar> {
+  @override
   Widget build(BuildContext context) {
+
     return Container(
       padding: const EdgeInsets.only(top: 20, left: 15, right: 30, bottom: 20),
       width: double.infinity,
@@ -14,7 +20,9 @@ class ActionBar extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           GestureDetector(
-            onTap: (){},
+            onTap: () {
+              return Scaffold.of(context).openDrawer();
+            },
             child: SvgPicture.asset("asset/images/icon/burger.svg",
               colorFilter: const ColorFilter.mode(Color(0xFF304457), BlendMode.srcIn),
               width: 40,

@@ -12,7 +12,7 @@ class Routing {
 
     switch (Route.name){
       case "/" :
-        return MaterialPageRoute(builder: (_) => const Home());
+        return MaterialPageRoute(builder: (_) => Home());
       case "/addCase" :
         return MaterialPageRoute(builder: (_) => const AddCase());
       case "/getStart":
