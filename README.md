@@ -11,5 +11,4 @@ Additionally, Nemos shares roots with the Greek concept of nomos (νόμος), m
 
 ## Feature:
 - BukaMata: A feature that helps other to know ones problem with law
-- Tanyakan: A feature that helps client to ask an ai or expert personally to deal with their current situation
 - LiteraKum: A feature that helps user to learn more about law so they could be more aware about how law works in this country
