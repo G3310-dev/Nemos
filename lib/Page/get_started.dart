@@ -15,19 +15,30 @@ class GetStarted extends StatelessWidget {
           Expanded(
             child: Align(
               alignment: Alignment.topCenter,
-              child: ClipRRect(
-                child: Image.asset('asset/images/picture/welcoming.png',
-                  filterQuality: FilterQuality.high,
-                  isAntiAlias: true,
-                  width: double.infinity,
+              child: Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(image: AssetImage("asset/images/picture/welcoming.png",),
+                    fit: BoxFit.fill,
+                    alignment: Alignment.topCenter,
+                  )
                 ),
-              ),
+              )
+
+              // SizedBox(
+              //   width: double.infinity,
+              //   child: Image.asset('asset/images/picture/welcoming.png',
+              //     filterQuality: FilterQuality.high,
+              //     isAntiAlias: true,
+              //     width: double.infinity,
+              //   ),
+              // ),
             ),
           ),
           Container(
             alignment: Alignment.bottomCenter,
             child: Container(
-              margin: EdgeInsets.only(left: 27.0, right: 30.0, top: 20.0, bottom: MediaQuery.sizeOf(context).height*0.08),
+              margin: EdgeInsets.only(left: 27.0, right: 30.0, top: 20.0, bottom: MediaQuery.sizeOf(context).height*0.03),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

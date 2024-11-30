@@ -3,7 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:nemos/Component/text_model.dart';
 
 class ActionBar extends StatefulWidget {
-  const ActionBar({super.key});
+  final String title;
+
+  const ActionBar({super.key, required this.title});
 
   @override
   State<ActionBar> createState() => _ActionBarState();
@@ -14,7 +16,7 @@ class _ActionBarState extends State<ActionBar> {
   Widget build(BuildContext context) {
 
     return Container(
-      padding: const EdgeInsets.only(top: 20, left: 15, right: 30, bottom: 20),
+      padding: const EdgeInsets.only(top: 30, left: 15, right: 30, bottom: 20),
       width: double.infinity,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -30,7 +32,7 @@ class _ActionBarState extends State<ActionBar> {
             ),
           ),
           const Spacer(),
-          const TextWidget(size: 25.0, content: "Nemos Buka Mata", type: 2, colour: 0xFF304457, alignment: TextAlign.center),
+          TextWidget(size: 20.0, content: widget.title, type: 2, colour: 0xFF304457, alignment: TextAlign.center),
           const Spacer(),
         ],
       ),

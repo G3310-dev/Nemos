@@ -34,7 +34,7 @@ class _SignInState extends State<SignIn> {
       body: Stack(
         children: [
           Container(
-            margin: const EdgeInsets.only(top: 17, left: 12),
+            margin: const EdgeInsets.only(top: 25, left: 12),
             width: 50,
             height: 50,
 
@@ -117,7 +117,9 @@ class _SignInState extends State<SignIn> {
                 ),
                 const SizedBox(height: 7,),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, "/signUp");
+                  },
                   child: const TextWidget(size: 13.0, content: "Don't have account? Click here!", type: 3, colour: 0xFF364D63, alignment: TextAlign.center),
                 )
               ],

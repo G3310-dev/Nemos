@@ -20,7 +20,7 @@ class Home extends StatelessWidget {
         children: [
           Column(
             children: [
-              const ActionBar(),
+              const ActionBar(title: 'Nemos Buka Mata',),
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(

@@ -1,13 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart' as http;
-import 'package:nemos/Page/confirmation.dart';
 import '../Component/button.dart';
 import '../Component/text_field.dart';
 import '../Component/text_model.dart';
+import '../Wrapper/database_wrapper.dart';
 
-class AddCase extends StatelessWidget {
-  const AddCase({super.key});
+class AddHukum extends StatelessWidget {
+  const AddHukum({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,7 @@ class AddCase extends StatelessWidget {
     final TextEditingController descController = TextEditingController();
     final TextEditingController imageController = TextEditingController();
     final TextEditingController resourceController = TextEditingController();
+    final dbControl = DbWrapper();
 
     return Scaffold(
       body: Stack(
@@ -35,8 +37,8 @@ class AddCase extends StatelessWidget {
                 children: [
                   const SizedBox(height: 30,),
                   const SizedBox(height: 30,),
-                  const TextWidget(size: 40.0, content: "Vox Potens!", type: 2, colour: 0xFF304457, alignment: TextAlign.center),
-                  const TextWidget(size: 19.0, content: "Let's help with BukaMata!", type: 0, colour: 0xFF364D63, alignment: TextAlign.center),
+                  const TextWidget(size: 40.0, content: "Hi Sir!", type: 2, colour: 0xFF304457, alignment: TextAlign.center),
+                  const TextWidget(size: 19.0, content: "Add more here", type: 0, colour: 0xFF364D63, alignment: TextAlign.center),
                   const SizedBox(height: 30,),
                   FieldText(text: "Image URL (optional)", height: 50, desc: 'Image', obs: false, control: imageController, textType: 2,),
                   const SizedBox(height: 10,),
@@ -64,13 +66,8 @@ class AddCase extends StatelessWidget {
                           ));
                         }else{
                           if(imageController.text.isEmpty){
-                            if(Uri.parse(resourceController.text).isAbsolute){
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => Confirmation(
-                                title: titleController.text, 
-                                desc: descController.text, 
-                                image: imageController.text,
-                                res: resourceController.text,
-                              )));
+                            if(Uri.parse(resourceController.text).isAbsolute) {
+                              dbControl.createTick(imageController.text, titleController.text, descController.text, resourceController.text, Timestamp.now());
                             }else {
                               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                 content: Column(
@@ -108,12 +105,7 @@ class AddCase extends StatelessWidget {
                                 bool isValid = await validateImage(imageController.text);
 
                                 if (isValid) {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => Confirmation(
-                                    title: titleController.text,
-                                    desc: descController.text,
-                                    image: imageController.text,
-                                    res: resourceController.text,
-                                  )));
+                                  dbControl.createTick(imageController.text, titleController.text, descController.text, resourceController.text, Timestamp.now());
                                 } else {
                                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                     content: Text("Image is not valid"),

@@ -36,7 +36,7 @@ class _SignUnState extends State<SignUp> {
       body: Stack(
         children: [
           Container(
-            margin: const EdgeInsets.only(top: 17, left: 12),
+            margin: const EdgeInsets.only(top: 25, left: 12),
             width: 50,
             height: 50,
 
@@ -48,6 +48,9 @@ class _SignUnState extends State<SignUp> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const TextWidget(size: 40.0, content: "New Here?", type: 2, colour: 0xFF304457, alignment: TextAlign.center),
+                const TextWidget(size: 19.0, content: "Welcome to Nemos", type: 0, colour: 0xFF364D63, alignment: TextAlign.center),
+                const SizedBox(height: 30,),
                 ImageButton(
                     width: MediaQuery.sizeOf(context).width*0.85,
                     height:  50,
@@ -67,9 +70,6 @@ class _SignUnState extends State<SignUp> {
                     child: const OrLine()
                 ),
                 const SizedBox(height: 30,),
-                const TextWidget(size: 40.0, content: "New Here?", type: 2, colour: 0xFF304457, alignment: TextAlign.center),
-                const TextWidget(size: 19.0, content: "Welcome to Nemos", type: 0, colour: 0xFF364D63, alignment: TextAlign.center),
-                const SizedBox(height: 30,),
 
                 FieldText(text: "Email", height: 50, desc: 'Email', obs: false, control: emailController, textType: 2,),
                 const SizedBox(height: 10,),
@@ -81,28 +81,36 @@ class _SignUnState extends State<SignUp> {
                   width: MediaQuery.sizeOf(context).width*0.85,
                   height: MediaQuery.sizeOf(context).height*0.05,
                   type: 1,
-                  onTap: (){
-                    context.read<AuthWrap>().signUp(
-                      email: emailController.text.trim(),
-                      password: passwordController.text.trim(),
-                      confirm: confirmpasswordController.text.trim(),
-                      context: context,
-                    );
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text("Please Wait..."),
-                      duration: Duration(milliseconds: 700),
-                    ));
-                    if(FirebaseAuth.instance.currentUser != null){
-                      Navigator.pushNamed(context, "/");
-                    }
+                  onTap: ()  {
+                       context.read<AuthWrap>().signUp(
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim(),
+                        confirm: confirmpasswordController.text.trim(),
+                        context: context,
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("Please Wait..."),
+                        duration: Duration(milliseconds: 700),
+                      ));
+                      if(FirebaseAuth.instance.currentUser != null){
+                        Navigator.pushNamed(context, "/");
+                      }
+
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("Please Wait..."),
+                        duration: Duration(milliseconds: 700),
+                      ));
+                      Navigator.pushReplacementNamed(context, "/");
                   },
                   text: "Sign In",
                   size: 18,
                 ),
                 const SizedBox(height: 7,),
                 GestureDetector(
-                  onTap: () {},
-                  child: const TextWidget(size: 13.0, content: "Don't have account? Click here!", type: 3, colour: 0xFF364D63, alignment: TextAlign.center),
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, "/signIn");
+                  },
+                  child: const TextWidget(size: 13.0, content: "Already have an account? Click here!", type: 3, colour: 0xFF364D63, alignment: TextAlign.center),
                 )
               ],
             ),

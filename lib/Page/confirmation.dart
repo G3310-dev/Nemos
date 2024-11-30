@@ -79,7 +79,7 @@ class _ConfirmationState extends State<Confirmation> {
                                   colorFilter: const ColorFilter.mode(Color(0xFF304457), BlendMode.srcIn),
                                 ),
                                 const SizedBox(width: 10,),
-                                TextWidget(size: 18.0, content: user?.email, type: 2, colour: 0xFF304457, alignment: TextAlign.start),
+                                const TextWidget(size: 18.0, content: "Your Username", type: 2, colour: 0xFF304457, alignment: TextAlign.start),
                               ],
                             ),
                           ),
@@ -99,18 +99,19 @@ class _ConfirmationState extends State<Confirmation> {
                                     trimExpandedText: '...Show less',
                                     moreStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
                                 Center(
-                                  child: Container(
+                                  child: Uri.parse(widget.image) != null && widget.image.isNotEmpty
+                                      ? Container(
                                     margin: const EdgeInsets.only(top: 10),
-                                    width: MediaQuery.sizeOf(context).width*0.9,
-                                    height: MediaQuery.sizeOf(context).height*0.22,
+                                    width: MediaQuery.sizeOf(context).width * 0.9,
+                                    height: MediaQuery.sizeOf(context).height * 0.22,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       image: DecorationImage(
-                                          image: NetworkImage(Uri.parse(widget.image).toString(),),
-                                          fit: BoxFit.cover
+                                        image: NetworkImage(Uri.parse(widget.image).toString()),
+                                        fit: BoxFit.cover,
                                       ),
                                     ),
-                                  ),
+                                  ):const SizedBox.shrink(),
                                 ),
                                 const SizedBox(height: 13,),
                                 Center(
@@ -142,6 +143,21 @@ class _ConfirmationState extends State<Confirmation> {
                     ),
                   ),
                   const SizedBox(height: 20,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(Icons.warning,
+                        color: Colors.red,
+                        size: 26,
+                      ),
+                      const SizedBox(width: 10,),
+                      SizedBox(
+                          width: MediaQuery.of(context).size.width*0.7,
+                          child: const TextWidget(size: 12.0, content: "If u don't have any username, any authorized user that was not concerned of your post may delete it. Go to profile to update your username.", type: 2, colour: 0xFFFF0004, alignment: TextAlign.start)),
+                    ],
+                  ),
+                  const SizedBox(height: 20,),
+
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
