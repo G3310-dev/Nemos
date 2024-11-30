@@ -28,7 +28,7 @@ class _LiteraKumState extends State<LiteraKum> {
     return Scaffold(
       drawer: const DrawerDef(),
       key: _scaffoldKey,
-      body: Column(
+      body: Stack(
         children: [
           // GestureDetector(
           //   onTap: (){
@@ -39,24 +39,25 @@ class _LiteraKumState extends State<LiteraKum> {
           //     child: const ActionBar(title: 'Nemos LiteraKum')
           // ),
           const ActionBar(title: 'Nemos LiteraKum'),
-          Expanded(
+          Container(
+            margin: const EdgeInsets.only(top: 95),
             child: SingleChildScrollView(
-              child: SizedBox(
-                width: MediaQuery.sizeOf(context).width*0.94,
-                child: StreamBuilder(
-                  stream: collectionReference.orderBy("PostDate", descending: true).snapshots(),
-                  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                    if (snapshot.data!.size >= 1) {
-                      return ListView(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        reverse: false,
-                        children: snapshot.data!.docs.map((e) {
-                          return Expanded(
-                            child: Center(
+              child: Center(
+                child: SizedBox(
+                  width: MediaQuery.sizeOf(context).width*0.94,
+                  child: StreamBuilder(
+                    stream: collectionReference.orderBy("PostDate", descending: true).snapshots(),
+                    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.data!.size >= 1) {
+                        return ListView(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          reverse: false,
+                          children: snapshot.data!.docs.map((e) {
+                            return Center(
                               child: Container(
                                 margin: const EdgeInsets.only(bottom: 10),
-                                padding: const EdgeInsets.only( bottom: 10, left: 8, right: 8),
+                                padding: const EdgeInsets.only(bottom: 10, left: 8, right: 8),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),
@@ -155,30 +156,30 @@ class _LiteraKumState extends State<LiteraKum> {
                                   ),
                                 ),
                               ),
+                            );
+                          }).toList(),
+                        );
+                      } else {
+                        return const Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(Icons.dark_mode,
+                              color: Color(0xFF525252),
+                              size: 50,
                             ),
-                          );
-                        }).toList(),
-                      );
-                    } else {
-                      return const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(Icons.dark_mode,
-                            color: Color(0xFF525252),
-                            size: 50,
-                          ),
-                          TextWidget(
-                            size: 20.0,
-                            content: "No Data Available!",
-                            type: 2,
-                            colour: 0xFF525252,
-                            alignment: TextAlign.center,
-                          ),
-                        ],
-                      );
-                    }
-                  },
+                            TextWidget(
+                              size: 20.0,
+                              content: "No Data Available!",
+                              type: 2,
+                              colour: 0xFF525252,
+                              alignment: TextAlign.center,
+                            ),
+                          ],
+                        );
+                      }
+                    },
+                  ),
                 ),
               ),
             ),
