@@ -41,6 +41,10 @@ dependencies:
   provider: ^6.1.2
   flutter_svg: ^2.0.14
   google_sign_in: ^6.2.2
+  cloud_firestore: ^5.5.0
+  http: ^1.2.2
+  readmore: ^3.0.0
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:

@@ -1,19 +1,28 @@
+import 'dart:async';
+import 'dart:core';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:nemos/Page/Authentication/sign_in.dart';
 import 'package:nemos/Page/get_started.dart';
+import 'package:nemos/Page/home.dart';
 import 'package:nemos/Wrapper/auth_wrapper.dart';
 import 'package:provider/provider.dart';
 
-Future <void> main() async {
+import 'Wrapper/route_wrapper.dart';
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   runApp(const MyApp());
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.white,
+    ),
+  );
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -25,18 +34,35 @@ class MyApp extends StatelessWidget {
         Provider<AuthWrap>(
           create: (_) => AuthWrap(FirebaseAuth.instance),
         ),
-        StreamProvider(
-          create: (context) => context.read<AuthWrap>().authStateChanges, initialData: null,
-        )
+        StreamProvider<User?>(
+          create: (context) => context.read<AuthWrap>().authStateChanges,
+          initialData: null,
+        ),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Nemos',
         theme: ThemeData(
           primarySwatch: Colors.blue,
-          scaffoldBackgroundColor: const Color(0xFFFFFFFF),
+          scaffoldBackgroundColor: Color(0xFFFFFFFF),
         ),
-        home: const SignIn(),
+        onGenerateRoute: Routing.generateRoute,
+        home: const AuthenticationWrapper(),
       ),
     );
+  }
+}
+
+class AuthenticationWrapper extends StatelessWidget {
+  const AuthenticationWrapper({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final firebaseUser  = context.watch<User?>();
+
+    if (firebaseUser  != null) {
+      return Home();
+    } else {
+      return const GetStarted();
+    }
   }
 }

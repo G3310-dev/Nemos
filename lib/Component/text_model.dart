@@ -24,7 +24,7 @@ class _TextWidgetState extends State<TextWidget> {
   Widget build(BuildContext context) {
     return Text(widget.content,
       style: TextStyle(
-          fontWeight: widget.type == 1? FontWeight.w500 : widget.type == 2? FontWeight.w700 : FontWeight.normal,
+          fontWeight: widget.type == 1? FontWeight.w500 : widget.type == 2? FontWeight.w800 : FontWeight.normal,
           fontSize: widget.size,
           color: Color(widget.colour)
       ),
