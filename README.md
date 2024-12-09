@@ -1,6 +1,6 @@
 # Nemos
 
-A app to help people solve the injustice that they face through virall-ness of social media and the help of experts. .
+A app to help people solve the injustice that they face through virall-ness.
 
 ## What's Nemos? 
 
