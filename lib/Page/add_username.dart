@@ -56,6 +56,10 @@ class _AddUsernameState extends State<AddUsername> {
                         content: Text("Please Wait..."),
                         duration: Duration(milliseconds: 700),
                       ));
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("Username is added..."),
+                        duration: Duration(milliseconds: 700),
+                      ));
                       Navigator.pushReplacementNamed(context, "/");
                     }else{
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

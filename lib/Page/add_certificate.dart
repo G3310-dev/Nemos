@@ -56,6 +56,11 @@ class _AddCertificateState extends State<AddCertificate> {
                     if(certificateController.text.isNotEmpty){
                       if(Uri.parse(certificateController.text).isAbsolute){
                         await dbControl.addUser(usernameController.text, "${user?.email}", certificateController.text);
+                      }else{
+                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                          content: Text("Link Invalid!!"),
+                          duration: Duration(milliseconds: 700),
+                        ));
                       }
 
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(

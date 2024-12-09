@@ -24,15 +24,6 @@ class GetStarted extends StatelessWidget {
                   )
                 ),
               )
-
-              // SizedBox(
-              //   width: double.infinity,
-              //   child: Image.asset('asset/images/picture/welcoming.png',
-              //     filterQuality: FilterQuality.high,
-              //     isAntiAlias: true,
-              //     width: double.infinity,
-              //   ),
-              // ),
             ),
           ),
           Container(

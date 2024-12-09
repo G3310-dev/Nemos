@@ -67,7 +67,7 @@ class _DrawerDefState extends State<DrawerDef> {
               height: 5.0,
               color: Color(0x807A7A7A),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(height: 10,),
             GestureDetector(
               onTap: () {
                 var route = ModalRoute.of(context);
@@ -90,7 +90,7 @@ class _DrawerDefState extends State<DrawerDef> {
                 ],
               ),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(height: 10,),
             const Divider(
               indent: 20,
               endIndent: 20,
@@ -98,7 +98,7 @@ class _DrawerDefState extends State<DrawerDef> {
               height: 5.0,
               color: Color(0x807A7A7A),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(height: 10,),
             GestureDetector(
               onTap: () async{
                 var route = ModalRoute.of(context);
@@ -121,7 +121,7 @@ class _DrawerDefState extends State<DrawerDef> {
                 ],
               ),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(height: 10,),
             const Divider(
               indent: 20,
               endIndent: 20,
@@ -129,7 +129,7 @@ class _DrawerDefState extends State<DrawerDef> {
               height: 5.0,
               color: Color(0x807A7A7A),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(height: 10,),
             GestureDetector(
               onTap: (){
                 var route = ModalRoute.of(context);
@@ -152,7 +152,7 @@ class _DrawerDefState extends State<DrawerDef> {
                 ],
               ),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(height: 10,),
             const Divider(
               indent: 20,
               endIndent: 20,
