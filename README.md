@@ -1,7 +1,7 @@
 # Nemos
 - 🥉3rd winner National Coding Competition Ciputra Group
 
-A app to help people solve the injustice that they face through virall-ness.
+An app to help people solve the injustice that they face through virall-ness.
 
 ## What's Nemos? 
 
